@@ -1,7 +1,7 @@
-local utils = require("customs.utils")
+local utils = require("config.utils")
 
 vim.cmd("iab ## /--------------<CR><CR>--------------/")
 
 if utils.has_work() then
-	require("customs.work.abbreviations")
+  require("config.work.abbreviations")
 end
