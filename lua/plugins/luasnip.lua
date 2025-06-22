@@ -29,6 +29,46 @@ return {
     --                            Markdown
     -- #####################################################################
 
+    -- Helper function to create code block snippets
+    local function create_code_block_snippet(lang)
+      return s({
+        trig = lang,
+        name = "Codeblock",
+        desc = lang .. " codeblock",
+      }, {
+        t({ "```" .. lang, "" }),
+        i(1),
+        t({ "", "```" }),
+      })
+    end
+
+    local languages = {
+      "txt",
+      "lua",
+      "sql",
+      "go",
+      "regex",
+      "bash",
+      "markdown",
+      "markdown_inline",
+      "yaml",
+      "json",
+      "jsonc",
+      "cpp",
+      "csv",
+      "java",
+      "javascript",
+      "python",
+      "dockerfile",
+      "html",
+      "css",
+      "php",
+    }
+
+    for _, lang in ipairs(languages) do
+      table.insert(snippets, create_code_block_snippet(lang))
+    end
+
     table.insert(
       snippets,
       s({
@@ -43,6 +83,8 @@ return {
         t('){:target="_blank"}'),
       })
     )
+
+    ls.add_snippets("markdown", snippets)
 
     return opts
   end,
